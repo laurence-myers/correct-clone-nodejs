@@ -1,9 +1,13 @@
 {
-  "name": "fast-deepclone",
+  "name": "correct-clone-nodejs",
   "main": "index.js",
-  "version": "1.0.0",
-  "author": "Sebastien Cottinet (https://github.com/scottinet)",
-  "description": "Deep clone an object",
+  "version": "0.0.1-dev",
+  "private": true,
+  "contributors": [
+    "Sebastien Cottinet (https://github.com/scottinet)",
+    "Laurence Dougal Myers (https://github.com/laurence-myers)"
+  ],
+  "description": "The most complete and correct cloning library avilable for Node.js",
   "keywords": [
     "deepclone",
     "clonedeep",
@@ -13,7 +17,13 @@
     "copy",
     "deep copy",
     "clonecopy",
-    "deepcopy"
+    "deepcopy",
+    "correct",
+    "correctness",
+    "arraybuffer",
+    "buffer",
+    "map",
+    "set"
   ],
   "scripts": {
     "configure": "node-gyp configure",
@@ -24,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/scottinet/fast-deepclone.git"
+    "url": "git://github.com/laurence-myers/correct-clone-nodejs.git"
   },
   "dependencies": {
     "bindings": "^1.2.1",
