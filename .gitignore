@@ -1,4 +1,6 @@
 *.log
+*.orig
 build/
 node_modules/
 /.idea/
+dist/
