@@ -189,7 +189,7 @@ Local<Object> cloneObject(circularMap & refs, const Local<Object> source) {
   return cloneObjectToTarget(refs, source, target, uid);
 }
 
-NAN_METHOD(deepClone) {
+NAN_METHOD(correctClone) {
   const int argc = info.Length();
 
   if (argc == 0) {
@@ -209,7 +209,7 @@ NAN_METHOD(deepClone) {
 }
 
 NAN_MODULE_INIT(init) {
-  Nan::Set(target, Nan::New("deepClone").ToLocalChecked(), Nan::GetFunction(Nan::New<v8::FunctionTemplate>(deepClone)).ToLocalChecked());
+  Nan::Set(target, Nan::New("correctClone").ToLocalChecked(), Nan::GetFunction(Nan::New<v8::FunctionTemplate>(correctClone)).ToLocalChecked());
 }
 
-NODE_MODULE(DeepClone, init)
+NODE_MODULE(CorrectClone, init)

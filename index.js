@@ -1,1 +1,1 @@
-module.exports = require('bindings')('DeepClone').deepClone;
+module.exports = require('bindings')('CorrectClone').correctClone;

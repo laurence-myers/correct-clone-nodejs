@@ -1,9 +1,9 @@
 {
   "targets": [
     {
-      "target_name": "DeepClone",
+      "target_name": "CorrectClone",
       "sources": [
-        "src/deepclone.cc"
+        "src/correctclone.cc"
       ],
       "include_dirs": [
         "<!(node -e \"require('nan')\")"

@@ -7,7 +7,7 @@ const
 
 // const NODE_VERSION = process.version.replace(/v([\d]+)\..*/, '$1');
 
-describe('deepclone unit tests', () => {
+describe('correct-clone-nodejs unit tests', () => {
   it('should clone a POJO object', () => {
     const src = {
       foo: 'bar',
