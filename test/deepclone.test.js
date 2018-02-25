@@ -81,12 +81,7 @@ describe('deepclone unit tests', () => {
       baz: new Map([[1, 2], [2, 3], [3, 4]])
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -125,12 +120,7 @@ describe('deepclone unit tests', () => {
       baz: new CustomMap([[1, 2], [2, 3], [3, 4]])
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -161,12 +151,7 @@ describe('deepclone unit tests', () => {
       baz: new Set([1, 2, 3, 4, 5])
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -205,12 +190,7 @@ describe('deepclone unit tests', () => {
       baz: new CustomSet([1, 2, 3, 4, 5])
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -241,12 +221,7 @@ describe('deepclone unit tests', () => {
       baz: crypto.randomBytes(12)
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -262,12 +237,7 @@ describe('deepclone unit tests', () => {
       baz: new Float64Array(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -282,12 +252,7 @@ describe('deepclone unit tests', () => {
       baz: new Float32Array(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -302,12 +267,7 @@ describe('deepclone unit tests', () => {
       baz: new Int32Array(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -322,12 +282,7 @@ describe('deepclone unit tests', () => {
       baz: new Int16Array(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -342,12 +297,7 @@ describe('deepclone unit tests', () => {
       baz: new Int8Array(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -362,12 +312,7 @@ describe('deepclone unit tests', () => {
       baz: new Uint8Array(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -382,12 +327,7 @@ describe('deepclone unit tests', () => {
       baz: new Uint8ClampedArray(crypto.randomBytes(12))
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -402,12 +342,7 @@ describe('deepclone unit tests', () => {
       baz: new Date()
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);
@@ -421,12 +356,7 @@ describe('deepclone unit tests', () => {
       baz: /^foobar/ig
     };
 
-    const cloned = deepclone(src);
-
-    assert.deepEqual(src, cloned);
-    assert.strictEqual(src.baz, cloned.baz);
-
-    const copied = deepclone(src, true);
+    const copied = deepclone(src);
 
     assert.deepEqual(src, copied);
     assert.notStrictEqual(src.baz, copied.baz);

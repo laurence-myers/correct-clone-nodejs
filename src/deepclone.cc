@@ -73,9 +73,9 @@ void copyProperties(const Local<Object> source, const Local<Object> target) {
   }
 }
 
-Local<Object> cloneObject(circularMap & refs, const Local<Object> source, bool copy);
+Local<Object> cloneObject(circularMap & refs, const Local<Object> source);
 
-Local<Object> cloneObjectToTarget(circularMap & refs, const Local<Object> source, bool copy, const Local<Object> target, int uid) {
+Local<Object> cloneObjectToTarget(circularMap & refs, const Local<Object> source, const Local<Object> target, int uid) {
   const Local<Array> keys = Nan::GetOwnPropertyNames(target).ToLocalChecked();
   const unsigned length = keys->Length();
 
@@ -89,12 +89,7 @@ Local<Object> cloneObjectToTarget(circularMap & refs, const Local<Object> source
     const Local<Value> key = keys->Get(i);
     const Local<Value> val = Nan::Get(target, key).ToLocalChecked();
 
-    if (!copy) {
-      if (isClonable(val)) {
-        Nan::Set(target, key, cloneObject(refs, val->ToObject(), copy));
-      }
-    }
-    else if (val->IsObject()) {
+    if (val->IsObject()) {
       if (val->IsRegExp()) {
         Local<v8::RegExp> regexp = Local<v8::RegExp>::Cast(val);
         Nan::Set(target, key, Nan::New<v8::RegExp>(regexp->GetSource(), regexp->GetFlags()).FromMaybe(val));
@@ -157,7 +152,7 @@ Local<Object> cloneObjectToTarget(circularMap & refs, const Local<Object> source
 
         targetMap->SetPrototype(Nan::GetCurrentContext(), val->ToObject()->GetPrototype());
         copyProperties(val->ToObject(), targetMap->ToObject());
-        Nan::Set(target, key, cloneObjectToTarget(refs, val->ToObject(), copy, targetMap->ToObject(), uid));
+        Nan::Set(target, key, cloneObjectToTarget(refs, val->ToObject(), targetMap->ToObject(), uid));
       }
       else if (val->IsSet()) {
         Local<Array> values = Local<v8::Set>::Cast(val)->AsArray();
@@ -171,10 +166,10 @@ Local<Object> cloneObjectToTarget(circularMap & refs, const Local<Object> source
 
 		targetSet->SetPrototype(Nan::GetCurrentContext(), val->ToObject()->GetPrototype());
         copyProperties(val->ToObject(), targetSet->ToObject());
-        Nan::Set(target, key, cloneObjectToTarget(refs, val->ToObject(), copy, targetSet->ToObject(), uid));
+        Nan::Set(target, key, cloneObjectToTarget(refs, val->ToObject(), targetSet->ToObject(), uid));
       }
       else if (isClonableLight(val)) {
-        Nan::Set(target, key, cloneObject(refs, val->ToObject(), copy));
+        Nan::Set(target, key, cloneObject(refs, val->ToObject()));
       }
     }
   }
@@ -182,7 +177,7 @@ Local<Object> cloneObjectToTarget(circularMap & refs, const Local<Object> source
   return target;
 }
 
-Local<Object> cloneObject(circularMap & refs, const Local<Object> source, bool copy) {
+Local<Object> cloneObject(circularMap & refs, const Local<Object> source) {
   int uid = source->GetIdentityHash();
   auto circularReference = refs.find(uid);
 
@@ -191,7 +186,7 @@ Local<Object> cloneObject(circularMap & refs, const Local<Object> source, bool c
   }
 
   const Local<Object> target = source->Clone();
-  return cloneObjectToTarget(refs, source, copy, target, uid);
+  return cloneObjectToTarget(refs, source, target, uid);
 }
 
 NAN_METHOD(deepClone) {
@@ -202,21 +197,11 @@ NAN_METHOD(deepClone) {
     return;
   }
 
-  bool deepCopy = false;
-
-  if (argc > 1) {
-    Local<Value> optCopy = info[1];
-
-    if (optCopy->IsBoolean()) {
-      deepCopy = optCopy->ToBoolean()->Value();
-    }
-  }
-
   const Local<Value> source = info[0];
 
   if (isClonable(source)) {
     circularMap refs;
-    info.GetReturnValue().Set(cloneObject(refs, source->ToObject(), deepCopy));
+    info.GetReturnValue().Set(cloneObject(refs, source->ToObject()));
   }
   else {
     info.GetReturnValue().Set(source);
